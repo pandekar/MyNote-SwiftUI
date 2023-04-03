@@ -1,0 +1,6 @@
+framework module Pods_MyNote_SwiftUI {
+  umbrella header "Pods-MyNote-SwiftUI-umbrella.h"
+
+  export *
+  module * { export * }
+}
