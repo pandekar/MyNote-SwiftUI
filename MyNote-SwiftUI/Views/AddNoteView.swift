@@ -9,18 +9,52 @@ import SwiftUI
 
 struct AddNoteView: View {
     
+    @State var titleField: String = ""
+    @State var descriptionField: String = ""
+    
+    @ObservedObject private var noteViewModel = NoteViewModel()
+    
+    @EnvironmentObject var navigationScreen: NavigationScreen
+    
+    func sendNoteData(title: String, description: String) {
+        let id = UUID().uuidString
+        let datetime = Date.now
+        let data = Note(id: id, title: title, description: description, datetime: datetime)
+        
+        noteViewModel.postData(note: data)
+        titleField = ""
+        descriptionField = ""
+        navigationScreen.currentView = .LIST_NOTE
+    }
+    
     var body: some View {
         ZStack {
             Color(Constant.AppThemeColor.mainColor)
                 .ignoresSafeArea()
             VStack {
-                TitleView()
+                TitleView(titleField: $titleField)
                 
-                DescriptionView()
+                DescriptionView(descriptionField: $descriptionField)
                 
                 Spacer()
                 
-                ButtonSaveView()
+                ZStack {
+                    RoundedRectangle(cornerRadius: 15)
+                        .fill(Color.green)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color.black, lineWidth: 5)
+                        }
+                    Button {
+                        if titleField != "" {
+                            sendNoteData(title: titleField, description: descriptionField)
+                        }
+                    } label: {
+                        Text("Save")
+                            .foregroundColor(.white)
+                    }
+                }
+                .frame(width: 150, height: 50)
             }
             .frame(alignment: .leading)
             .padding(.top, 50)
@@ -30,7 +64,7 @@ struct AddNoteView: View {
 }
 
 struct TitleView: View {
-    @State var titleField: String = ""
+    var titleField: Binding<String>
     
     var body: some View {
         VStack {
@@ -41,7 +75,7 @@ struct TitleView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 15)
                     .fill(Color.white)
-                TextField("insert title here...", text: $titleField)
+                TextField("insert title here...", text: titleField)
                     .padding(.horizontal, 10)
             }
             .frame(width: 300, height: 100)
@@ -50,7 +84,7 @@ struct TitleView: View {
 }
 
 struct DescriptionView: View {
-    @State var descriptionField: String = ""
+    var descriptionField: Binding<String>
     
     var body: some View {
         VStack {
@@ -61,32 +95,12 @@ struct DescriptionView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 15)
                     .fill(Color.white)
-                TextField("insert description here...", text: $descriptionField)
+                TextField("insert description here...", text: descriptionField)
                     .padding(.horizontal, 10)
                     .frame(width: 300, height: 300, alignment: .leading)
             }
             .frame(width: 300, height: 300)
         }
-    }
-}
-
-struct ButtonSaveView: View {
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 15)
-                .fill(Color.green)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 15)
-                        .stroke(Color.black, lineWidth: 5)
-                }
-            Button {
-                print("save note")
-            } label: {
-                Text("Save")
-                    .foregroundColor(.white)
-            }
-        }
-        .frame(width: 150, height: 50)
     }
 }
 

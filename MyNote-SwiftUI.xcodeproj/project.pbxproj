@@ -15,10 +15,11 @@
 		669A63D229D2F914008E09C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 669A63D129D2F914008E09C3 /* Assets.xcassets */; };
 		669A63D529D2F914008E09C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 669A63D429D2F914008E09C3 /* Preview Assets.xcassets */; };
 		669A63DD29D2FB05008E09C3 /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669A63DC29D2FB05008E09C3 /* AddNoteView.swift */; };
-		669A63E029D2FE83008E09C3 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669A63DF29D2FE83008E09C3 /* NoteModel.swift */; };
 		66BE627929DA80B300758276 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66BE627829DA80B300758276 /* GoogleService-Info.plist */; };
 		66BE627B29DA857600758276 /* ListNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE627A29DA857600758276 /* ListNoteView.swift */; };
 		66BE627F29DBBC2D00758276 /* NavigationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE627E29DBBC2D00758276 /* NavigationScreen.swift */; };
+		66BE628129DBD1DE00758276 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE628029DBD1DE00758276 /* Note.swift */; };
+		66BE628329DBD23000758276 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BE628229DBD23000758276 /* NoteViewModel.swift */; };
 		8292E62FB89B39BEE5200BF3 /* Pods_MyNote_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366C4AE5AA04561C7868F398 /* Pods_MyNote_SwiftUI.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,10 +35,11 @@
 		669A63D129D2F914008E09C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		669A63D429D2F914008E09C3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		669A63DC29D2FB05008E09C3 /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
-		669A63DF29D2FE83008E09C3 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 		66BE627829DA80B300758276 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		66BE627A29DA857600758276 /* ListNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNoteView.swift; sourceTree = "<group>"; };
 		66BE627E29DBBC2D00758276 /* NavigationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationScreen.swift; sourceTree = "<group>"; };
+		66BE628029DBD1DE00758276 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		66BE628229DBD23000758276 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
 		B7DF4440A98F3F1D96E62F7D /* Pods-MyNote-SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyNote-SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-MyNote-SwiftUI/Pods-MyNote-SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,7 +111,8 @@
 		669A63DE29D2FE61008E09C3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				669A63DF29D2FE83008E09C3 /* NoteModel.swift */,
+				66BE628029DBD1DE00758276 /* Note.swift */,
+				66BE628229DBD23000758276 /* NoteViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -246,12 +249,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66BE628329DBD23000758276 /* NoteViewModel.swift in Sources */,
 				6623AC6629D3DA3400FCBEA4 /* Constants.swift in Sources */,
 				6623AC6A29D536DD00FCBEA4 /* RegisterLoginView.swift in Sources */,
 				66BE627B29DA857600758276 /* ListNoteView.swift in Sources */,
 				66BE627F29DBBC2D00758276 /* NavigationScreen.swift in Sources */,
 				669A63DD29D2FB05008E09C3 /* AddNoteView.swift in Sources */,
-				669A63E029D2FE83008E09C3 /* NoteModel.swift in Sources */,
+				66BE628129DBD1DE00758276 /* Note.swift in Sources */,
 				6623AC6829D513E300FCBEA4 /* WelcomeScreenView.swift in Sources */,
 				669A63D029D2F913008E09C3 /* ContentView.swift in Sources */,
 				669A63CE29D2F913008E09C3 /* MyNote_SwiftUIApp.swift in Sources */,

@@ -11,20 +11,26 @@ struct ContentView: View {
     
     @StateObject var navigationScreen = NavigationScreen()
     
+    let transition: AnyTransition = .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
+    
     var body: some View {
         Group {
             switch navigationScreen.currentView {
             case .LIST_NOTE:
                 ListNoteView()
                     .environmentObject(navigationScreen)
+                    .transition(transition)
             case .ADD_NOTE:
                 AddNoteView()
                     .environmentObject(navigationScreen)
+                    .transition(transition)
             default:
                 WelcomeScreenView()
                     .environmentObject(navigationScreen)
+                    .transition(transition)
             }
         }
+        .animation(.default, value: navigationScreen.currentView)
     }
 }
 

@@ -17,6 +17,14 @@ struct Constant {
         static let login: String = "LOGIN"
         static let register: String = "REGISTER"
     }
+    
+    struct FStore {
+        static let collectionName = "Notes"
+        static let id = "id"
+        static let title = "title"
+        static let description = "description"
+        static let datetime = "datetime"
+    }
 }
 
 
