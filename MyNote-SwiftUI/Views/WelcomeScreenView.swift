@@ -19,11 +19,11 @@ struct WelcomeScreenView: View {
                     Divider()
                     
                     ButtonBar(savedFunction: {
-                        AnyView(RegisterLoginView(status: "LOGIN"))
+                        AnyView(RegisterLoginView(status: Constant.authStatus.login))
                     }, buttonTitle: "Log In")
                     
                     ButtonBar(savedFunction: {
-                        AnyView(RegisterLoginView(status: "REGISTER"))
+                        AnyView(RegisterLoginView(status: Constant.authStatus.register))
                     }, buttonTitle: "Register")
                 }
                 .padding(.horizontal, 20)

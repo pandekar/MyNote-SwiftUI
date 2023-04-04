@@ -8,53 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var navigationScreen = NavigationScreen()
+    
     var body: some View {
-        NavigationView {
-            ZStack {
-                Color(Constant.AppThemeColor.mainColor)
-                    .ignoresSafeArea()
-                RoundedRectangle(cornerRadius: 15)
-                    .fill(Color.white)
-                    .frame(width: 375)
-                VStack {
-                    List {
-                        Text("Hello, world!")
-                        Text("Hello, world!")
-                        Text("Hello, world!")
-                    }
-                    HStack {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(Color.green)
-                            NavigationLink {
-                                AddNoteView()
-                            } label: {
-                                Text("Add")
-                                    .foregroundColor(.white)
-                            }
-                        }
-                        .frame(width: 150, height: 50)
-
-                        Divider()
-                            .frame(height: 10)
-                            .padding(.horizontal, 10)
-                        
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(Color.blue)
-                            Button {
-                                print("edit selected item")
-                            } label: {
-                                Text("Edit")
-                                    .foregroundColor(.white)
-                            }
-                        }
-                        .frame(width: 150, height: 50)
-                        
-                    }
-                    .padding()
-                }
-                .padding()
+        Group {
+            switch navigationScreen.currentView {
+            case .LIST_NOTE:
+                ListNoteView()
+                    .environmentObject(navigationScreen)
+            case .ADD_NOTE:
+                AddNoteView()
+                    .environmentObject(navigationScreen)
+            default:
+                WelcomeScreenView()
+                    .environmentObject(navigationScreen)
             }
         }
     }

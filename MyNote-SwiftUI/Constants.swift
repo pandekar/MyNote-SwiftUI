@@ -12,6 +12,11 @@ struct Constant {
     struct AppThemeColor {
         static let mainColor: UIColor = .systemMint
     }
+    
+    struct authStatus {
+        static let login: String = "LOGIN"
+        static let register: String = "REGISTER"
+    }
 }
 
 

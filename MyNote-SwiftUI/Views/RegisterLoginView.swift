@@ -14,6 +14,8 @@ struct RegisterLoginView: View {
     @State var emailField: String = ""
     @State var passwordField: String = ""
     
+    @EnvironmentObject var navigationScreen: NavigationScreen
+    
     func getButtonMessage(status: String?) -> String {
         if let textMessage = status {
             return textMessage
@@ -27,7 +29,27 @@ struct RegisterLoginView: View {
             if let errorMessage = error {
                 print("\(errorMessage.localizedDescription)")
             } else {
-                // navigation code
+                navigationScreen.currentView = .LIST_NOTE
+            }
+        }
+    }
+    
+    func sendLoginData(email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if let errorMessage = error {
+                print(errorMessage.localizedDescription)
+            } else {
+                navigationScreen.currentView = .LIST_NOTE
+            }
+        }
+    }
+    
+    func onPressedButtonAction(status: String?, email: String, password: String) {
+        if let status = status {
+            if status == Constant.authStatus.register {
+                sendRegistrationData(email: email, password: password)
+            } else {
+                sendLoginData(email: email, password: password)
             }
         }
     }
@@ -41,8 +63,9 @@ struct RegisterLoginView: View {
                 customTextField(textPlaceholder: "insert password here...", textContainer: $passwordField)
 
                 Button {
-                    print(emailField)
-                    print(passwordField)
+                    if self.emailField != "", self.passwordField != "" {
+                        onPressedButtonAction(status: status, email: self.emailField, password: self.passwordField)
+                    }
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 25)
@@ -50,8 +73,8 @@ struct RegisterLoginView: View {
                         Text(getButtonMessage(status: status))
                             .foregroundColor(.white)
                     }
-                    
                 }
+
 
             }
             .padding(.horizontal, 20)

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>907431266318-0kdv70751fdjohufm41kb254eql6k9a9.apps.googleusercontent.com</string>
+	<string>733198438519-2gdcrjtm4sptgk39v4n8d0e0l9m9m8fp.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.907431266318-0kdv70751fdjohufm41kb254eql6k9a9</string>
+	<string>com.googleusercontent.apps.733198438519-2gdcrjtm4sptgk39v4n8d0e0l9m9m8fp</string>
 	<key>API_KEY</key>
-	<string>AIzaSyC6dSOvdtGL_0Rn9zO5Upz09LAq7Bg9moM</string>
+	<string>AIzaSyAfRES_xbbqjl22KFYKDSetbp3liz2Dybs</string>
 	<key>GCM_SENDER_ID</key>
-	<string>907431266318</string>
+	<string>733198438519</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.pandekar.mynote</string>
+	<string>com.pandekar.MyNote-SwiftUI</string>
 	<key>PROJECT_ID</key>
-	<string>mynote-8b936</string>
+	<string>mynote-swiftui</string>
 	<key>STORAGE_BUCKET</key>
-	<string>mynote-8b936.appspot.com</string>
+	<string>mynote-swiftui.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:907431266318:ios:37505ae72a6a2823de145f</string>
+	<string>1:733198438519:ios:55354c6e18b8a956c57672</string>
 </dict>
 </plist>
