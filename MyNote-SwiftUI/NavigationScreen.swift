@@ -18,8 +18,4 @@ class NavigationScreen: ObservableObject {
     
     @Published var currentView = CurrentView.WELCOME_SCREEN
     
-    func navigate(screenName: CurrentView) {
-        self.currentView = screenName
-    }
-    
 }

@@ -11,6 +11,8 @@ struct ListNoteView: View {
     
     @EnvironmentObject var navigationScreen: NavigationScreen
     
+    @ObservedObject private var noteViewModel =  NoteViewModel()
+    
     var body: some View {
         ZStack {
             Color(Constant.AppThemeColor.mainColor)
@@ -19,10 +21,10 @@ struct ListNoteView: View {
                 .fill(Color.white)
                 .frame(width: 375)
             VStack {
-                List {
-                    Text("Hello, world!")
-                    Text("Hello, world!")
-                    Text("Hello, world!")
+                List{
+                    ForEach(noteViewModel.notes, id: \.id) { note in
+                        Text(note.title)
+                    }
                 }
                 HStack {
                     ZStack {
@@ -57,6 +59,9 @@ struct ListNoteView: View {
                 .padding()
             }
             .padding()
+        }
+        .onAppear {
+            self.noteViewModel.loadData()
         }
     }
 }
