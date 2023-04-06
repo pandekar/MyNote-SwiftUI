@@ -12,4 +12,5 @@ struct Note {
     let title: String
     let description: String
     let datetime: Date
+    let sender: String
 }

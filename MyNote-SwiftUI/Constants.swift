@@ -24,6 +24,7 @@ struct Constant {
         static let title = "title"
         static let description = "description"
         static let datetime = "datetime"
+        static let sender = "sender"
     }
 }
 

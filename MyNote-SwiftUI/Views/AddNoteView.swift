@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct AddNoteView: View {
     
@@ -17,11 +18,7 @@ struct AddNoteView: View {
     @EnvironmentObject var navigationScreen: NavigationScreen
     
     func sendNoteData(title: String, description: String) {
-        let id = UUID().uuidString
-        let datetime = Date.now
-        let data = Note(id: id, title: title, description: description, datetime: datetime)
-        
-        noteViewModel.postData(note: data)
+        noteViewModel.postData(title: title, description: description)
         titleField = ""
         descriptionField = ""
         navigationScreen.currentView = .LIST_NOTE

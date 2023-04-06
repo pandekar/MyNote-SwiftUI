@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import FirebaseFirestore
+import FirebaseAuth
 
 class NoteViewModel: ObservableObject {
     
@@ -16,24 +17,30 @@ class NoteViewModel: ObservableObject {
     @Published var notes: Array<Note> = []
     
     // function to post data
-    func postData(note: Note) {
-        databaseReference.addDocument(data: [
-            Constant.FStore.id : note.id,
-            Constant.FStore.title : note.title,
-            Constant.FStore.description : note.description,
-            Constant.FStore.datetime : note.datetime
-        ]) { err in
-            if let err = err {
-                print("error \(err)")
-            } else {
-                print("Note added with id: \(note.id)")
+    func postData(title: String, description: String) {
+        if let sender = Auth.auth().currentUser?.email {
+            let id = UUID().uuidString
+            let datetime = Date.now
+            
+            databaseReference.addDocument(data: [
+                Constant.FStore.id : id,
+                Constant.FStore.title : title,
+                Constant.FStore.description : description,
+                Constant.FStore.datetime : datetime,
+                Constant.FStore.sender : sender
+            ]) { err in
+                if let err = err {
+                    print("error \(err)")
+                } else {
+                    print("Note added with id: \(id)")
+                }
             }
         }
     }
     
     // function to load data from firebase
     func loadData() {
-        databaseReference.getDocuments { querySnapshot, error in
+        databaseReference.order(by: Constant.FStore.datetime).getDocuments { querySnapshot, error in
             if let e = error {
                 print("error \(e)")
             } else {
@@ -42,14 +49,15 @@ class NoteViewModel: ObservableObject {
                         let data = doc.data()
                         let stamp = data[Constant.FStore.datetime] as! Timestamp
                         let datetime = stamp.dateValue()
-                        if let title = data[Constant.FStore.title] as? String {
-                            let noteObject = Note(id: data[Constant.FStore.id] as! String,
-                                                  title: title,
-                                                  description: data[Constant.FStore.description] as! String,
-                                                  datetime: datetime
-                                                )
-                            
-                            self.notes.append(noteObject)
+                        let sender = data[Constant.FStore.sender] as! String
+                        if let currentUser = Auth.auth().currentUser?.email {
+                            if sender == currentUser {
+                                self.notes.append(Note(id: data[Constant.FStore.id] as! String,
+                                                       title: data[Constant.FStore.title] as! String,
+                                                       description: data[Constant.FStore.description] as! String,
+                                                       datetime: datetime,
+                                                       sender: currentUser))
+                            }
                         }
                     }
                 }
