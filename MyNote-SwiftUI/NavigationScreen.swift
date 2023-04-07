@@ -14,6 +14,7 @@ class NavigationScreen: ObservableObject {
         case WELCOME_SCREEN
         case REGISTER_LOGIN
         case LIST_NOTE
+        case DETAIL
     }
     
     @Published var currentView = CurrentView.WELCOME_SCREEN

@@ -14,19 +14,27 @@ struct ListNoteView: View {
     @ObservedObject private var noteViewModel =  NoteViewModel()
     
     var body: some View {
-        ZStack {
-            Color(Constant.AppThemeColor.mainColor)
-                .ignoresSafeArea()
-            RoundedRectangle(cornerRadius: 15)
-                .fill(Color.white)
-                .frame(width: 375)
-            VStack {
-                List{
-                    ForEach(noteViewModel.notes, id: \.id) { note in
-                        Text(note.title)
+        NavigationView {
+            ZStack {
+                Color(Constant.AppThemeColor.mainColor)
+                    .ignoresSafeArea()
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(Color.white)
+                    .frame(width: 375)
+                VStack {
+                    List{
+                        ForEach(noteViewModel.notes, id: \.id) { note in
+                            NavigationLink(destination: DetailView(noteDetail: note)) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .fill(.blue)
+                                    Text(note.title)
+                                        .foregroundColor(.white)
+                                }
+                            }
+                        }
                     }
-                }
-                HStack {
+
                     ZStack {
                         RoundedRectangle(cornerRadius: 15)
                             .fill(Color.green)
@@ -38,27 +46,9 @@ struct ListNoteView: View {
                         }
                     }
                     .frame(width: 150, height: 50)
-
-                    Divider()
-                        .frame(height: 10)
-                        .padding(.horizontal, 10)
-                    
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 15)
-                            .fill(Color.blue)
-                        Button {
-                            print("edit selected item")
-                        } label: {
-                            Text("Edit")
-                                .foregroundColor(.white)
-                        }
-                    }
-                    .frame(width: 150, height: 50)
-                    
                 }
                 .padding()
             }
-            .padding()
         }
         .onAppear {
             self.noteViewModel.loadData()
